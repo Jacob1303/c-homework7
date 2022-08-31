@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+
+using System;
 
 class Programm
 {
@@ -21,7 +23,7 @@ class Programm
         {
             for (int j = 0; j < matr.GetLength(1); j++)
             {
-                matr[i, j] = Math.Round(new Random().NextDouble(), 1);
+                matr[i, j] = Math.Round(new Random().NextDouble()*10, 1);
                 int k = new Random().Next(0, 2);
                 if (k == 1) matr[i, j] = matr[i, j] * -1;
             }
