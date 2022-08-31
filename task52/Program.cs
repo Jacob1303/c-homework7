@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+
+using System;
 
 class Programm
 {
@@ -21,20 +23,25 @@ class Programm
         {
             for (int j = 0; j < matr.GetLength(1); j++)
             {
-                matr[i, j] = new Random().Next(1,10);
+                matr[i, j] = new Random().Next(1, 10);
             }
         }
     }
 
-    static void FindNumbInArray(int[,] array, int m, int n)
+    static void AverageElementsColumn(int[,] array)
     {
-        if (m <= array.GetLength(0) && n <= array.GetLength(1))
+        double[] sum = new double[array.GetLength(1)];
+        for (int i = 0; i < array.GetLength(1); i++)
         {
-            Console.WriteLine($"Элемент массива с заданным индексом -  {array[m, n]}");
+            for (int j = 0; j < array.GetLength(0); j++)
+            {
+                sum[i] += array[j, i];
+            }
         }
-        else
+        for (int i = 0; i < array.GetLength(1); i++)
         {
-            Console.WriteLine("Нет такого элемента в массиве");
+            sum[i] = Math.Round(sum[i] / (array.GetLength(0)), 1);
+            Console.Write("|" + sum[i] + "| ");
         }
     }
 
@@ -44,9 +51,8 @@ class Programm
 
         FillArray(matrix);
         PrintArray(matrix);
-        Console.WriteLine("Введите поочерёдно индекс строки и индекс столбца необходимого Вам элемента");
-        int m = Convert.ToInt32(Console.ReadLine());
-        int n = Convert.ToInt32(Console.ReadLine());
-        FindNumbInArray(matrix, m, n);
+        Console.WriteLine(" ");
+        Console.Write("Среднее арифметическое каждого столбца: ");
+        AverageElementsColumn(matrix);
     }
 }
